@@ -12,7 +12,6 @@ module.exports = {
     new HtmlWebpackPlugin({
         template: 'src/index.html'
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
   module: {
