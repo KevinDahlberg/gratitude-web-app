@@ -21,7 +21,7 @@ function addUserDBQuery (email, password) {
         done();
         if (queryError) {
           console.log('error adding to db ', queryError);
-          result.sendStatus(500);
+          queryError.sendStatus(500);
         } else {
           console.log('success adding to db');
           result.sendStatus(201)
