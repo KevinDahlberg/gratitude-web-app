@@ -5,7 +5,7 @@ import { history } from '../data/store'
 export default class RegisterForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: '', password: ''}
+    this.state = { email: '', password: ''}
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,7 +15,7 @@ export default class RegisterForm extends Component {
     const init = {
       method: 'POST'
     }
-    fetch('/user/register', init, user)
+    fetch('/user/registerUser', init, user)
   }
 
   handleChange(e) {
@@ -24,7 +24,7 @@ export default class RegisterForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    let objectToSend = {username: this.state.username, password: this.state.password}
+    let objectToSend = {username: this.state.email, password: this.state.password}
     this.registerUser(objectToSend)
     history.push('/login')
   }
@@ -35,8 +35,8 @@ export default class RegisterForm extends Component {
       <form onSubmit={this.handleSubmit}>
         <TextField
           hintText="Email"
-          name="username"
-          value={this.state.username}
+          name="email"
+          value={this.state.email}
           onChange={this.handleChange}
         />
         <br />

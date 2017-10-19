@@ -4,28 +4,29 @@ var pg = require('pg');
 var pool = require('../modules/db');
 
 router.post('/registerUser', function(req, res) {
-  var username = req.body.username
+  var email = req.body.email
   var password = req.body.password
+  addUserDBQuery(email, password)
+})
 
+function addUserDBQuery (email, password) {
   pool.connect(function(error, db, done) {
     if (error) {
       console.log('database connection failes');
       res.sendStatus(500)
     } else {
-      addUserDBQUery(username, password, done)
-    }
-  })
-})
-
-function addUserDBQuery (username, password, done) {
-  db.query('INSERT INTO "users" ("username", "password") VALUES ($1, $2);',
-  username, password,
-  function(queryError, result) {
-    done();
-    if (queryError) {
-      result.sendStatus(500);
-    } else {
-      result.sendStatus(201)
+      db.query('INSERT INTO "users" ("email", "password") VALUES ($1, $2);',
+      [email, password],
+      function(queryError, result) {
+        done();
+        if (queryError) {
+          console.log('error adding to db ', queryError);
+          result.sendStatus(500);
+        } else {
+          console.log('success adding to db');
+          result.sendStatus(201)
+        }
+      })
     }
   })
 }

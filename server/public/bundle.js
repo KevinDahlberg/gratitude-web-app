@@ -68812,7 +68812,7 @@ var RegisterForm = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (RegisterForm.__proto__ || Object.getPrototypeOf(RegisterForm)).call(this, props));
 
-    _this.state = { username: '', password: '' };
+    _this.state = { email: '', password: '' };
 
     _this.handleChange = _this.handleChange.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -68825,7 +68825,7 @@ var RegisterForm = function (_Component) {
       var init = {
         method: 'POST'
       };
-      fetch('/user/register', init, user);
+      fetch('/user/registerUser', init, user);
     }
   }, {
     key: 'handleChange',
@@ -68836,7 +68836,7 @@ var RegisterForm = function (_Component) {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
       e.preventDefault();
-      var objectToSend = { username: this.state.username, password: this.state.password };
+      var objectToSend = { username: this.state.email, password: this.state.password };
       this.registerUser(objectToSend);
       _store.history.push('/login');
     }
@@ -68851,8 +68851,8 @@ var RegisterForm = function (_Component) {
           { onSubmit: this.handleSubmit },
           _react2.default.createElement(_materialUi.TextField, {
             hintText: 'Email',
-            name: 'username',
-            value: this.state.username,
+            name: 'email',
+            value: this.state.email,
             onChange: this.handleChange
           }),
           _react2.default.createElement('br', null),
