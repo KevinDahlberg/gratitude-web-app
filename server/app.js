@@ -13,6 +13,7 @@ var index = require('./routes/index');
 
 //Routes
 app.use('/index', index);
+app.use(express.static('public'));
 
 //App Config
 app.set('port', (process.env.PORT || 5000));

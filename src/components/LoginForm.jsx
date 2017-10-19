@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { TextField, RaisedButton } from 'material-ui'
+import { TextField, RaisedButton, FlatButton } from 'material-ui'
+import { history } from '../data/store'
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -17,10 +18,9 @@ export default class LoginForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('Submitted: ', this.state);
   }
 
-  hendleClick() {
+  handleClick() {
     history.push('/register')
   }
 
@@ -44,7 +44,7 @@ export default class LoginForm extends Component {
         />
         <br />
         <RaisedButton label="Login" type="submit" primary={true} />
-        <FlatButton label="Register" secondary={true} onClick={handleClick} />
+        <FlatButton label="Register" secondary={true} onClick={this.handleClick} />
       </form>
       </div>
     )
