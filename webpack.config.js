@@ -1,8 +1,9 @@
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var eslintFormatter = require('react-dev-utils/eslintFormatter')
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'cheap-module-source-map',
   entry: __dirname + '/src/index.js',
   output: {
     path: __dirname + '/server/public',
@@ -19,7 +20,10 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          loader: 'eslint-loader'
+          loader: 'eslint-loader',
+          options: {
+            formatter: eslintFormatter,
+          }
       },
       {
         test: /\.(js|jsx)$/,

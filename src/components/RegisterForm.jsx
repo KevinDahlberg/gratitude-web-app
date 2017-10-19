@@ -11,12 +11,21 @@ export default class RegisterForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  registerUser(user) {
+    const init = {
+      method: 'POST'
+    }
+    fetch('/user/register', init, user)
+  }
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
+    let objectToSend = {username: this.state.username, password: this.state.password}
+    this.registerUser(objectToSend)
     history.push('/login')
   }
 

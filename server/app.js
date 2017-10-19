@@ -10,10 +10,7 @@ var passport = require('./modules/user_sql')
 
 //Route Modules
 var index = require('./routes/index');
-
-//Routes
-app.use('/index', index);
-app.use(express.static('public'));
+var user = require('./routes/user');
 
 //App Config
 app.set('port', (process.env.PORT || 5000));
@@ -35,6 +32,11 @@ app.use(session({
 //start up passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
+
+//Routes
+app.use('/index', index);
+app.use('/user', user);
+app.use('/*', index);
 
 // listen
 app.listen(app.get('port'), function(){
