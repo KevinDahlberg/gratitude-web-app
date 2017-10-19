@@ -77,6 +77,7 @@ passport.use('local', new localStrategy({
               user = result.rows[0];
               // Hash and compare
               if(encryptLib.comparePassword(password, user.password)) {
+                console.log('password compare ', password, ' ', user.password);
                 // all good!
                 done(null, user);
               } else {

@@ -13,9 +13,11 @@ export default class RegisterForm extends Component {
 
   registerUser(user) {
     const init = {
-      method: 'POST'
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(user)
     }
-    fetch('/user/registerUser', init, user)
+    fetch('/user/registerUser', init)
   }
 
   handleChange(e) {
@@ -24,7 +26,7 @@ export default class RegisterForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    let objectToSend = {username: this.state.email, password: this.state.password}
+    let objectToSend = {email: this.state.email, password: this.state.password}
     this.registerUser(objectToSend)
     history.push('/login')
   }

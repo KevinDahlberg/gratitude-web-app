@@ -5,7 +5,7 @@ import { history } from '../data/store'
 export default class LoginForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: '', password: ''}
+    this.state = { email: '', password: ''}
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,8 +16,20 @@ export default class LoginForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  loginUser(user) {
+    const init = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(user)
+    }
+    fetch('/user/loginUser', init)
+  }
+
   handleSubmit(e) {
     e.preventDefault();
+    let objectToSend = {email: this.state.email, password: this.state.password}
+    console.log(objectToSend);
+    this.loginUser(objectToSend)
   }
 
   handleClick() {
@@ -30,8 +42,8 @@ export default class LoginForm extends Component {
       <form onSubmit={this.handleSubmit}>
         <TextField
           hintText="Email"
-          name="username"
-          value={this.state.username}
+          name="email"
+          value={this.state.email}
           onChange={this.handleChange}
         />
         <br />
