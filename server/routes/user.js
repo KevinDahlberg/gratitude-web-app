@@ -29,13 +29,10 @@ router.post('/registerUser', function(req, res) {
  * local strategy can be found in user_sql.js
  */
 router.post('/loginUser',
-  passport.authenticate('local',
-    {
-      successRedirect: '/',
-      failureRedirect: '/login',
-      failureFlash: 'Invalid username or password'
-    }
-  )
+  passport.authenticate('local'),
+  function(req, res) {
+      res.sendStatus(200);
+  }
 );
 
 /** DB QUERIES **/

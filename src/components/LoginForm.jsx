@@ -5,7 +5,7 @@ import { history } from '../data/store'
 export default class LoginForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { email: '', password: ''}
+    this.state = { email: '', password: '', loggedIn: false}
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,7 +24,11 @@ export default class LoginForm extends Component {
     }
     fetch('/user/loginUser', init)
     .then(function(response) {
-      console.log(response);
+      if(response.status === 200){
+        console.log('login was a success');
+      } else {
+        console.log('login failed');
+      }
     })
   }
 

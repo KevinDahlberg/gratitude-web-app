@@ -68784,7 +68784,7 @@ var LoginForm = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (LoginForm.__proto__ || Object.getPrototypeOf(LoginForm)).call(this, props));
 
-    _this.state = { email: '', password: '' };
+    _this.state = { email: '', password: '', loggedIn: false };
 
     _this.handleChange = _this.handleChange.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -68806,7 +68806,11 @@ var LoginForm = function (_Component) {
         body: JSON.stringify(user)
       };
       fetch('/user/loginUser', init).then(function (response) {
-        console.log(response);
+        if (response.status === 200) {
+          console.log('login was a success');
+        } else {
+          console.log('login failed');
+        }
       });
     }
   }, {
