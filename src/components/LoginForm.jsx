@@ -23,6 +23,9 @@ export default class LoginForm extends Component {
       body: JSON.stringify(user)
     }
     fetch('/user/loginUser', init)
+    .then(function(response) {
+      console.log(response);
+    })
   }
 
   handleSubmit(e) {

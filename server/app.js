@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
+var flash = require('connect-flash')
 
 //Authentication Routes
 var session = require('express-session')
@@ -28,6 +29,7 @@ app.use(session({
   saveUninitialized: false,
   cookie: {maxage: 60000, secure: false}
 }));
+app.use(flash())
 
 //start up passport sessions
 app.use(passport.initialize());

@@ -68805,7 +68805,9 @@ var LoginForm = function (_Component) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
       };
-      fetch('/user/loginUser', init);
+      fetch('/user/loginUser', init).then(function (response) {
+        console.log(response);
+      });
     }
   }, {
     key: 'handleSubmit',
