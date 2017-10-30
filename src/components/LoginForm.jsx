@@ -25,7 +25,7 @@ export default class LoginForm extends Component {
     fetch('/user/loginUser', init)
     .then(function(response) {
       if(response.status === 200){
-        console.log('login was a success');
+        history.push('/home')
       } else {
         console.log('login failed');
       }

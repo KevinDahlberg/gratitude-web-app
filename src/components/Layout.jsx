@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import Home from './Home.jsx'
-import LoginForm from './LoginForm.jsx'
+import Login from '../containers/Login.js'
 import RegisterForm from './RegisterForm.jsx'
 
 const Layout = () => (
@@ -10,7 +10,7 @@ const Layout = () => (
     <Switch>
         <div className="content-body">
           <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={LoginForm} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={RegisterForm} />
         </div>
     </Switch>
