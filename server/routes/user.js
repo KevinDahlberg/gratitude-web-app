@@ -35,6 +35,14 @@ router.post('/loginUser',
   }
 );
 
+router.get('/auth', function(req, res) {
+  if (req.isAuthenticated()) {
+    res.send(req.user);
+  } else {
+    res.sendStatus(403);
+  }
+});
+
 /** DB QUERIES **/
 function addUserDBQuery (email, password, res) {
   pool.connect(function(error, db, done) {
