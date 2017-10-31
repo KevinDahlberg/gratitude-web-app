@@ -15,19 +15,23 @@ export default class StepsBoxes extends Component {
   }
 
   box(stepObj) {
-    <div className = "step-box">
-      <h2 className = "step-num">{stepObj.num}</h2>
-      <span className = "step-text">{stepObj.step}</span>
-    </div>
+    return (
+      <div className = "step-box">
+        <h2 className = "step-num">{stepObj.num}</h2>
+        <span className = "step-text">{stepObj.step}</span>
+      </div>
+    )
   }
 
   render() {
     return (
       <div>
         {this.state.stepsArray.map((step, idx) => {
-          <div key={idx}>
-            {this.box(step)}
-          </div>
+          return (
+            <div key={idx}>
+              {this.box(step)}
+            </div>
+          )
         })}
       </div>
     )

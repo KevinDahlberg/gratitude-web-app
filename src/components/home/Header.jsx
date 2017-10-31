@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-esport default class header extends Component {
+export default class header extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -14,7 +14,7 @@ esport default class header extends Component {
       <div>
         <h1>{this.state.title}</h1>
         <p>{this.state.subtitle}</p>
-      <div>
+      </div>
     )
   }
 }

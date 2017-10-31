@@ -1,4 +1,4 @@
-import fetch from 'isomporhpic-fetch'
+import fetch from 'isomorphic-fetch'
 
 const AUTH_USER = 'AUTH_USER'
 
@@ -8,9 +8,9 @@ const initialState = {
 }
 /** Actions **/
 
-function authUser () {
-  return (type: AUTH_USER)
-}
+// function authUser () {
+//   return (type: AUTH_USER)
+// }
 
 function shouldAuthenticateUser(state) {
   if (state.isAuthenticated){

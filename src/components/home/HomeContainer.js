@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { RaisedButton, FlatButton } from 'material-ui'
-import { history } from '../data/store'
+import { history } from '../../data/store'
 
 import Benefits from './Benefits.jsx'
 import Header from './Header.jsx'
@@ -27,14 +27,9 @@ export default class Home extends Component {
     return (
       <div>
         <Header />
-      </div>
-      <div>
         <StepsBoxes />
-      </div>
-      <div>
         <Benefits />
-      </div>
-      <div>
+
         <RaisedButton label="Login" onClick={this.handleLoginClick} primary={true} />
         <FlatButton label="Register" secondary={true} onClick={this.handleRegisterClick} />
       </div>
