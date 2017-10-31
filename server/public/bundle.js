@@ -68813,7 +68813,7 @@ var Benefits = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'benefits-url', href: '{this.state.url}' },
+        { className: 'benefits-url', href: this.state.url },
         _react2.default.createElement(
           'h2',
           { className: 'blue-text' },

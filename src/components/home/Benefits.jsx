@@ -22,7 +22,7 @@ export default class Benefits extends Component {
 
   render() {
     return (
-      <div className="benefits-url" href="{this.state.url}">
+      <div className="benefits-url" href={this.state.url}>
         <h2 className="blue-text">{this.state.heading}</h2>
         <ul>
           {this.state.benefitsArray.map((item, idx) => {
