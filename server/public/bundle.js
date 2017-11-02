@@ -18241,7 +18241,7 @@ var _Root = __webpack_require__(218);
 
 var _Root2 = _interopRequireDefault(_Root);
 
-__webpack_require__(486);
+__webpack_require__(483);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46881,11 +46881,11 @@ var _HomeContainer = __webpack_require__(341);
 
 var _HomeContainer2 = _interopRequireDefault(_HomeContainer);
 
-var _Login = __webpack_require__(483);
+var _Login = __webpack_require__(480);
 
 var _Login2 = _interopRequireDefault(_Login);
 
-var _RegisterForm = __webpack_require__(485);
+var _RegisterForm = __webpack_require__(482);
 
 var _RegisterForm2 = _interopRequireDefault(_RegisterForm);
 
@@ -47612,15 +47612,15 @@ var _materialUi = __webpack_require__(102);
 
 var _store = __webpack_require__(69);
 
-var _Benefits = __webpack_require__(480);
+var _Benefits = __webpack_require__(477);
 
 var _Benefits2 = _interopRequireDefault(_Benefits);
 
-var _Header = __webpack_require__(481);
+var _Header = __webpack_require__(478);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _StepsBoxes = __webpack_require__(482);
+var _StepsBoxes = __webpack_require__(479);
 
 var _StepsBoxes2 = _interopRequireDefault(_StepsBoxes);
 
@@ -68764,10 +68764,7 @@ var rootReducer = (0, _redux.combineReducers)({
 exports.default = rootReducer;
 
 /***/ }),
-/* 477 */,
-/* 478 */,
-/* 479 */,
-/* 480 */
+/* 477 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68845,7 +68842,7 @@ var Benefits = function (_Component) {
 exports.default = Benefits;
 
 /***/ }),
-/* 481 */
+/* 478 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68910,7 +68907,7 @@ var header = function (_Component) {
 exports.default = header;
 
 /***/ }),
-/* 482 */
+/* 479 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68991,7 +68988,7 @@ var StepsBoxes = function (_Component) {
 exports.default = StepsBoxes;
 
 /***/ }),
-/* 483 */
+/* 480 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69007,7 +69004,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _LoginForm = __webpack_require__(484);
+var _LoginForm = __webpack_require__(481);
 
 var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
@@ -69050,7 +69047,7 @@ var Login = function (_Component) {
 exports.default = Login;
 
 /***/ }),
-/* 484 */
+/* 481 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69167,7 +69164,7 @@ var LoginForm = function (_Component) {
 exports.default = LoginForm;
 
 /***/ }),
-/* 485 */
+/* 482 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69271,13 +69268,13 @@ var RegisterForm = function (_Component) {
 exports.default = RegisterForm;
 
 /***/ }),
-/* 486 */
+/* 483 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(487);
+var content = __webpack_require__(484);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -69285,7 +69282,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(489)(content, options);
+var update = __webpack_require__(486)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -69302,10 +69299,10 @@ if(false) {
 }
 
 /***/ }),
-/* 487 */
+/* 484 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(488)(undefined);
+exports = module.exports = __webpack_require__(485)(undefined);
 // imports
 
 
@@ -69316,7 +69313,7 @@ exports.push([module.i, "body {\n  font-family: 'Roboto', sans-serif;\n}\n", ""]
 
 
 /***/ }),
-/* 488 */
+/* 485 */
 /***/ (function(module, exports) {
 
 /*
@@ -69398,7 +69395,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 489 */
+/* 486 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -69454,7 +69451,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(490);
+var	fixUrls = __webpack_require__(487);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -69770,7 +69767,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 490 */
+/* 487 */
 /***/ (function(module, exports) {
 
 
