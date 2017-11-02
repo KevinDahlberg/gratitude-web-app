@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import Home from './home/HomeContainer.js'
-import Login from '../containers/Login.js'
+import Login from './login/LoginContainer.js'
 import RegisterForm from './RegisterForm.jsx'
 
 const Layout = () => (
