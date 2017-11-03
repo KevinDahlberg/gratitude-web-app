@@ -46912,9 +46912,9 @@ var _LoginContainer = __webpack_require__(480);
 
 var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
 
-var _RegisterForm = __webpack_require__(485);
+var _RegisterContainer = __webpack_require__(491);
 
-var _RegisterForm2 = _interopRequireDefault(_RegisterForm);
+var _RegisterContainer2 = _interopRequireDefault(_RegisterContainer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46951,7 +46951,7 @@ var Layout = function Layout() {
             lineNumber: 13
           }
         }),
-        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/register', component: _RegisterForm2.default, __source: {
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/register', component: _RegisterContainer2.default, __source: {
             fileName: _jsxFileName,
             lineNumber: 14
           }
@@ -69238,8 +69238,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-exports.authUser = authUser;
 exports.loginUser = loginUser;
+exports.registerUser = registerUser;
 exports.verifyAuthenticateUser = verifyAuthenticateUser;
 
 var _isomorphicFetch = __webpack_require__(482);
@@ -69249,16 +69249,23 @@ var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var AUTH_USER = 'AUTH_USER';
+var REG_USER = 'REG_USER';
 
 var initialState = {
     user: '',
     isLoggedIn: false
+
     /** Actions **/
 
 };function authUser(loggedIn) {
     return { type: AUTH_USER, isLoggedIn: loggedIn };
 }
 
+function regUser() {
+    return { type: REG_USER };
+}
+
+/** Action Functions */
 function loginUser(user) {
     var init = {
         method: 'POST',
@@ -69274,6 +69281,18 @@ function loginUser(user) {
                 dispatch(authUser(false));
             }
         });
+    };
+}
+
+function registerUser(user) {
+    var init = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+    };
+
+    return function (dispatch) {
+        (0, _isomorphicFetch2.default)('/user/registerUser', init).then(dispatch(regUser()));
     };
 }
 
@@ -69316,6 +69335,8 @@ function userReducer() {
             return _extends({}, state, {
                 isLoggedIn: action.isLoggedIn
             });
+        case REG_USER:
+            return state;
         default:
             return state;
     }
@@ -69944,142 +69965,7 @@ var LoginForm = function (_Component) {
 exports.default = LoginForm;
 
 /***/ }),
-/* 485 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var _jsxFileName = '/Users/kevindahlberg/Dropbox/coding/gratitude-web-app/src/components/RegisterForm.jsx';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _materialUi = __webpack_require__(102);
-
-var _store = __webpack_require__(70);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var RegisterForm = function (_Component) {
-  _inherits(RegisterForm, _Component);
-
-  function RegisterForm(props) {
-    _classCallCheck(this, RegisterForm);
-
-    var _this = _possibleConstructorReturn(this, (RegisterForm.__proto__ || Object.getPrototypeOf(RegisterForm)).call(this, props));
-
-    _this.state = { email: '', password: '' };
-
-    _this.handleChange = _this.handleChange.bind(_this);
-    _this.handleSubmit = _this.handleSubmit.bind(_this);
-    return _this;
-  }
-
-  _createClass(RegisterForm, [{
-    key: 'registerUser',
-    value: function registerUser(user) {
-      var init = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-      };
-      fetch('/user/registerUser', init);
-    }
-  }, {
-    key: 'handleChange',
-    value: function handleChange(e) {
-      this.setState(_defineProperty({}, e.target.name, e.target.value));
-    }
-  }, {
-    key: 'handleSubmit',
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      var objectToSend = { email: this.state.email, password: this.state.password };
-      this.registerUser(objectToSend);
-      _store.history.push('/login');
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 36
-          }
-        },
-        _react2.default.createElement(
-          'form',
-          { onSubmit: this.handleSubmit, __source: {
-              fileName: _jsxFileName,
-              lineNumber: 37
-            }
-          },
-          _react2.default.createElement(_materialUi.TextField, {
-            hintText: 'Email',
-            name: 'email',
-            value: this.state.email,
-            onChange: this.handleChange,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 38
-            }
-          }),
-          _react2.default.createElement('br', {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 44
-            }
-          }),
-          _react2.default.createElement(_materialUi.TextField, {
-            hintText: 'Password',
-            name: 'password',
-            type: 'password',
-            value: this.state.password,
-            onChange: this.handleChange,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 45
-            }
-          }),
-          _react2.default.createElement('br', {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 52
-            }
-          }),
-          _react2.default.createElement(_materialUi.RaisedButton, { label: 'Register', type: 'submit', primary: true, __source: {
-              fileName: _jsxFileName,
-              lineNumber: 53
-            }
-          })
-        )
-      );
-    }
-  }]);
-
-  return RegisterForm;
-}(_react.Component);
-
-exports.default = RegisterForm;
-
-/***/ }),
+/* 485 */,
 /* 486 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -70672,6 +70558,237 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 491 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var _jsxFileName = '/Users/kevindahlberg/Dropbox/coding/gratitude-web-app/src/components/register/RegisterContainer.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(121);
+
+var _redux = __webpack_require__(58);
+
+var _store = __webpack_require__(70);
+
+var _userActions = __webpack_require__(481);
+
+var _RegisterForm = __webpack_require__(492);
+
+var _RegisterForm2 = _interopRequireDefault(_RegisterForm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Register = function (_Component) {
+    _inherits(Register, _Component);
+
+    function Register(props) {
+        _classCallCheck(this, Register);
+
+        var _this = _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).call(this, props));
+
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        _this.handleClick = _this.handleClick.bind(_this);
+        return _this;
+    }
+
+    _createClass(Register, [{
+        key: 'handleSubmit',
+        value: function handleSubmit(objectToSend) {
+            var registerUser = this.props.registerUser;
+
+            registerUser(objectToSend);
+            _store.history.push('/login');
+        }
+    }, {
+        key: 'handleClick',
+        value: function handleClick() {
+            _store.history.push('/login');
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(_RegisterForm2.default, {
+                onHandleClick: this.handleClick,
+                onHandleSubmit: this.handleSubmit,
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 31
+                }
+            });
+        }
+    }]);
+
+    return Register;
+}(_react.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+    return {
+        isLoggedIn: state.userReducer.isLoggedIn
+    };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({ registerUser: _userActions.registerUser }, dispatch);
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Register);
+
+/***/ }),
+/* 492 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _jsxFileName = '/Users/kevindahlberg/Dropbox/coding/gratitude-web-app/src/components/register/RegisterForm.jsx';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _materialUi = __webpack_require__(102);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RegisterForm = function (_Component) {
+  _inherits(RegisterForm, _Component);
+
+  function RegisterForm(props) {
+    _classCallCheck(this, RegisterForm);
+
+    var _this = _possibleConstructorReturn(this, (RegisterForm.__proto__ || Object.getPrototypeOf(RegisterForm)).call(this, props));
+
+    _this.state = { email: '', password: '' };
+
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.handleClick = _this.handleClick.bind(_this);
+    return _this;
+  }
+
+  _createClass(RegisterForm, [{
+    key: 'handleChange',
+    value: function handleChange(e) {
+      this.setState(_defineProperty({}, e.target.name, e.target.value));
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var objectToSend = { email: this.state.email.toLowerCase(), password: this.state.password };
+      this.props.onHandleSubmit(objectToSend);
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick() {
+      this.props.onHandleClick();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 30
+          }
+        },
+        _react2.default.createElement(
+          'form',
+          { onSubmit: this.handleSubmit, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 31
+            }
+          },
+          _react2.default.createElement(_materialUi.TextField, {
+            hintText: 'Email',
+            name: 'email',
+            value: this.state.email,
+            onChange: this.handleChange,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 32
+            }
+          }),
+          _react2.default.createElement('br', {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 38
+            }
+          }),
+          _react2.default.createElement(_materialUi.TextField, {
+            hintText: 'Password',
+            name: 'password',
+            type: 'password',
+            value: this.state.password,
+            onChange: this.handleChange,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 39
+            }
+          }),
+          _react2.default.createElement('br', {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 46
+            }
+          }),
+          _react2.default.createElement(_materialUi.FlatButton, {
+            label: 'Back',
+            secondary: true,
+            onClick: this.handleClick,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 47
+            }
+          }),
+          _react2.default.createElement(_materialUi.RaisedButton, { label: 'Register', type: 'submit', primary: true, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 52
+            }
+          })
+        )
+      );
+    }
+  }]);
+
+  return RegisterForm;
+}(_react.Component);
+
+exports.default = RegisterForm;
 
 /***/ })
 /******/ ]);

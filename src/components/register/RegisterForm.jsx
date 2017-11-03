@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { TextField, RaisedButton } from 'material-ui'
-import { history } from '../data/store'
+import { TextField, RaisedButton, FlatButton } from 'material-ui'
 
 export default class RegisterForm extends Component {
   constructor(props) {
@@ -9,15 +8,7 @@ export default class RegisterForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  registerUser(user) {
-    const init = {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(user)
-    }
-    fetch('/user/registerUser', init)
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(e) {
@@ -26,9 +17,12 @@ export default class RegisterForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    let objectToSend = {email: this.state.email, password: this.state.password}
-    this.registerUser(objectToSend)
-    history.push('/login')
+    let objectToSend = {email: this.state.email.toLowerCase(), password: this.state.password}
+    this.props.onHandleSubmit(objectToSend)
+  }
+
+  handleClick() {
+    this.props.onHandleClick()
   }
 
   render() {
@@ -50,6 +44,11 @@ export default class RegisterForm extends Component {
           onChange={this.handleChange}
         />
         <br />
+        <FlatButton 
+          label = "Back"
+          secondary = {true}
+          onClick = {this.handleClick}
+        />
         <RaisedButton label="Register" type="submit" primary={true} />
       </form>
       </div>

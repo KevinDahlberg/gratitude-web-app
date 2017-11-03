@@ -1,17 +1,24 @@
 import fetch from 'isomorphic-fetch'
 
 const AUTH_USER = 'AUTH_USER'
+const REG_USER = 'REG_USER'
 
 const initialState = {
         user: '',
         isLoggedIn: false
-    }
-    /** Actions **/
+}
 
-export function authUser (loggedIn) {
+/** Actions **/
+
+function authUser (loggedIn) {
   return {type: AUTH_USER, isLoggedIn: loggedIn}
 }
 
+function regUser () {
+    return {type: REG_USER}
+}
+
+/** Action Functions */
 export function loginUser(user) {
     const init = {
         method: 'POST',
@@ -30,6 +37,20 @@ export function loginUser(user) {
         })
     }
 }
+
+export function registerUser(user) {
+    const init = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(user)
+    }
+
+    return dispatch => {
+        fetch('/user/registerUser', init)
+        .then(dispatch(regUser()))
+    }
+}
+    
 
 function shouldAuthenticateUser(state) {
     if (state.isAuthenticated) {
@@ -69,6 +90,8 @@ function userReducer(state = initialState, action) {
                 ...state,
                 isLoggedIn: action.isLoggedIn
             }
+        case REG_USER:
+            return state
         default:
             return state
     }
