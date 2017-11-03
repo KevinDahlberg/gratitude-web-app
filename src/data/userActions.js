@@ -8,8 +8,8 @@ const initialState = {
     }
     /** Actions **/
 
-function authUser (loggedIn) {
-  return (type: AUTH_USER, isLoggedIn: loggedIn)
+export function authUser (loggedIn) {
+  return {type: AUTH_USER, isLoggedIn: loggedIn}
 }
 
 export function loginUser(user) {
@@ -69,6 +69,8 @@ function userReducer(state = initialState, action) {
                 ...state,
                 isLoggedIn: action.isLoggedIn
             }
+        default:
+            return state
     }
 }
 

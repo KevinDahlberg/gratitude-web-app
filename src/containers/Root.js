@@ -8,18 +8,14 @@ import store, { history } from '../data/store';
 
 export default class Root extends Component {
     render() {
-        return ( <
-            MuiThemeProvider >
-            <
-            Provider store = { store } >
-            <
-            ConnectedRouter history = { history } >
-            <
-            Layout / >
-            <
-            /ConnectedRouter> <
-            /Provider> <
-            /MuiThemeProvider>
+        return ( 
+            <MuiThemeProvider >
+                <Provider store = { store } >
+                    <ConnectedRouter history = { history } >
+                        <Layout / >
+                    </ConnectedRouter> 
+                </Provider> 
+            </MuiThemeProvider>
         );
     }
 }
