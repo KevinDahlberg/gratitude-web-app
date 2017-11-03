@@ -10,10 +10,10 @@ export default class LoginForm extends Component {
 
         this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleChange(e) {
-        // this.props.onInputChange([e.target.name], e.target.value)
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -21,9 +21,7 @@ export default class LoginForm extends Component {
 
     handleSubmit(e){
         e.preventDefault()
-
-        const objectToSend = { email: this.state.email, password: this.state.password }
-        console.log('object to send is ', objectToSend)
+        const objectToSend = { email: this.state.email.toLowerCase(), password: this.state.password }
         this.props.onHandleSubmit(objectToSend)
     }
 

@@ -17,10 +17,7 @@ class Login extends Component {
     }
 
     handleSubmit(objectToSend) {
-    //   const { loginUser } = this.props
-    //   e.preventDefault();
-    //   const objectToSend = { email: this.state.email, password: this.state.password }
-      console.log(objectToSend);
+      const { loginUser } = this.props
       loginUser(objectToSend)
     }
 

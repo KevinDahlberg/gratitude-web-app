@@ -69187,11 +69187,9 @@ var Login = function (_Component) {
     _createClass(Login, [{
         key: 'handleSubmit',
         value: function handleSubmit(objectToSend) {
-            //   const { loginUser } = this.props
-            //   e.preventDefault();
-            //   const objectToSend = { email: this.state.email, password: this.state.password }
-            console.log(objectToSend);
-            (0, _userActions.loginUser)(objectToSend);
+            var loginUser = this.props.loginUser;
+
+            loginUser(objectToSend);
         }
     }, {
         key: 'handleClick',
@@ -69206,7 +69204,7 @@ var Login = function (_Component) {
                 onHandleSubmit: this.handleSubmit,
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 33
+                    lineNumber: 30
                 }
             });
         }
@@ -69846,22 +69844,20 @@ var LoginForm = function (_Component) {
 
         _this.handleChange = _this.handleChange.bind(_this);
         _this.handleClick = _this.handleClick.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
         return _this;
     }
 
     _createClass(LoginForm, [{
         key: 'handleChange',
         value: function handleChange(e) {
-            // this.props.onInputChange([e.target.name], e.target.value)
             this.setState(_defineProperty({}, e.target.name, e.target.value));
         }
     }, {
         key: 'handleSubmit',
         value: function handleSubmit(e) {
             e.preventDefault();
-
-            var objectToSend = { email: this.state.email, password: this.state.password };
-            console.log('object to send is ', objectToSend);
+            var objectToSend = { email: this.state.email.toLowerCase(), password: this.state.password };
             this.props.onHandleSubmit(objectToSend);
         }
     }, {
@@ -69877,14 +69873,14 @@ var LoginForm = function (_Component) {
                 {
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 36
+                        lineNumber: 34
                     }
                 },
                 _react2.default.createElement(
                     'form',
                     { onSubmit: this.handleSubmit, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 37
+                            lineNumber: 35
                         }
                     },
                     _react2.default.createElement(_materialUi.TextField, {
@@ -69894,13 +69890,13 @@ var LoginForm = function (_Component) {
                         onChange: this.handleChange,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 38
+                            lineNumber: 36
                         }
                     }),
                     _react2.default.createElement('br', {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 44
+                            lineNumber: 42
                         }
                     }),
                     _react2.default.createElement(_materialUi.TextField, {
@@ -69911,13 +69907,13 @@ var LoginForm = function (_Component) {
                         onChange: this.handleChange,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 45
+                            lineNumber: 43
                         }
                     }),
                     _react2.default.createElement('br', {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 52
+                            lineNumber: 50
                         }
                     }),
                     _react2.default.createElement(_materialUi.RaisedButton, {
@@ -69926,7 +69922,7 @@ var LoginForm = function (_Component) {
                         primary: true,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 53
+                            lineNumber: 51
                         }
                     }),
                     _react2.default.createElement(_materialUi.FlatButton, { label: 'Register',
@@ -69934,7 +69930,7 @@ var LoginForm = function (_Component) {
                         onClick: this.handleClick,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 58
+                            lineNumber: 56
                         }
                     })
                 )
