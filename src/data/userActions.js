@@ -5,13 +5,14 @@ const REG_USER = 'REG_USER'
 
 const initialState = {
         user: '',
-        isLoggedIn: false
+        isLoggedIn: false,
+        loginStatus: ''
 }
 
 /** Actions **/
 
-function authUser (loggedIn) {
-  return {type: AUTH_USER, isLoggedIn: loggedIn}
+function authUser (loggedIn, status) {
+  return {type: AUTH_USER, isLoggedIn: loggedIn, loginStatus: status}
 }
 
 function regUser () {
@@ -23,16 +24,18 @@ export function loginUser(user) {
     const init = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify(user)
     }
 
     return dispatch => {
         fetch('/user/loginUser', init)
         .then(response => {
+            console.log(response)
             if (response.status === 200) {
-                dispatch(authUser(true))     
+                dispatch(authUser(true, response.status))     
             } else {
-                dispatch(authUser(false))
+                dispatch(authUser(false, response.status))
             }
         })
     }
@@ -42,11 +45,13 @@ export function registerUser(user) {
     const init = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
+        credentials: 'include',
         body: JSON.stringify(user)
     }
 
     return dispatch => {
         fetch('/user/registerUser', init)
+        .then(function(response) { console.log(response); })
         .then(dispatch(regUser()))
     }
 }
@@ -64,6 +69,7 @@ function authenticateUser() {
     const init = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
     }
     fetch('/user/auth', init)
         .then(function(response) {
@@ -84,11 +90,13 @@ export function verifyAuthenticateUser() {
 /** Reducer **/
 
 function userReducer(state = initialState, action) {
+    console.log(action)
     switch (action.type) {
         case AUTH_USER:
             return {
                 ...state,
-                isLoggedIn: action.isLoggedIn
+                isLoggedIn: action.isLoggedIn,
+                loginStatus: action.loginStatus
             }
         case REG_USER:
             return state

@@ -25,6 +25,15 @@ class Login extends Component {
         history.push('/register')
     }
 
+    componentDidUpdate(){
+        const { isLoggedIn } = this.props
+        if (isLoggedIn ) {
+        history.push('/privateRoute')
+        } else {
+            window.location.reload();
+        }
+    }
+
     render() {
         return ( 
                 <LoginForm 
@@ -36,7 +45,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-    isLoggedIn: state.userReducer.isLoggedIn
+    isLoggedIn: state.userReducer.isLoggedIn,
+    loginStatus: state.userReducer.loginStatus
 })
 
 const mapDispatchToProps = dispatch => {
